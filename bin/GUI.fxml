@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Button layoutX="14.0" layoutY="341.0" mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="120.0" text="Generate" textAlignment="CENTER" />
+      <Button layoutX="466.0" layoutY="341.0" mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
+      <ListView prefHeight="310.0" prefWidth="590.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
+      <Spinner fx:id="passwordCount" editable="true" layoutX="164.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
+      <Spinner fx:id="passwordLength" editable="true" layoutX="314.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
+      <Label layoutX="180.0" layoutY="378.0" prefHeight="17.0" prefWidth="150.0" text="# of passwords" />
+      <Label layoutX="330.0" layoutY="378.0" text="Password length" />
+   </children>
+</AnchorPane>
