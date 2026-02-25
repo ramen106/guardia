@@ -1,5 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
@@ -14,6 +15,12 @@ public class Controller implements Initializable {
  
     @FXML
     private Spinner<Integer> passwordLength;
+    
+    @FXML
+    private ListView<String> passwords;
+    
+    int passwordsToGenerate;
+    int passwordSize;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1)
@@ -29,12 +36,22 @@ public class Controller implements Initializable {
         // assigning the factories to the spinners
         passwordCount.setValueFactory(passwordCountFactory);
         passwordLength.setValueFactory(passwordLengthFactory);
+
+
     }
 
     // the methods responsible for generating and exporting, binding them to the buttons in the FXML/scene builder
    @FXML
     public void generate(ActionEvent e)
     {
+        passwordsToGenerate = passwordCount.getValue();
+        passwordSize = passwordLength.getValue();
+
+        for(int i = 0; i < passwordsToGenerate; i++)
+        {
+            // Generate passwords
+        }
+
         System.out.println("Generated");
     }
 
