@@ -17,8 +17,10 @@ public class Main extends Application {
         Scene scene = new Scene(root, Color.GRAY);
         Image icon =  new Image("icon.png");
         primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Password Generator");
+        primaryStage.setTitle("Guardia");
         primaryStage.setScene(scene);
+        primaryStage.setMinHeight(400);
+        primaryStage.setMinWidth(600);
         primaryStage.show();
         }
         catch (Exception e) {

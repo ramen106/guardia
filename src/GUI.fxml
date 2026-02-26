@@ -5,15 +5,33 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Button layoutX="14.0" layoutY="341.0" mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="120.0" text="Generate" textAlignment="CENTER" />
-      <Button layoutX="466.0" layoutY="341.0" mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
-      <ListView fx:id="passwordListView" prefHeight="310.0" prefWidth="590.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
-      <Spinner fx:id="passwordCount" editable="true" layoutX="164.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
-      <Spinner fx:id="passwordLength" editable="true" layoutX="314.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
-      <Label layoutX="180.0" layoutY="378.0" prefHeight="17.0" prefWidth="150.0" text="# of passwords" />
-      <Label layoutX="330.0" layoutY="378.0" text="Password length" />
+      <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView fx:id="passwordListView" prefHeight="310.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="90.0" prefWidth="600.0" spacing="30.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Password length" />
+                        <Spinner fx:id="passwordLength" editable="true" prefHeight="35.0" prefWidth="120.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="88.0" text="# of passwords" />
+                        <Spinner fx:id="passwordCount" editable="true" prefHeight="35.0" prefWidth="267.0" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="120.0" text="Generate" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
