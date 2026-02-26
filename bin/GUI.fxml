@@ -17,18 +17,28 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Password length" />
+                        <Label text="Password Length" />
                         <Spinner fx:id="passwordLength" editable="true" prefHeight="35.0" prefWidth="120.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="88.0" text="# of passwords" />
+                        <Label prefHeight="17.0" prefWidth="88.0" text="Password Count" />
                         <Spinner fx:id="passwordCount" editable="true" prefHeight="35.0" prefWidth="267.0" />
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="120.0" text="Generate" textAlignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="copyAlert" prefHeight="17.0" prefWidth="132.0" text="Copied password #10000!" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="100.0" text="Generate" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="exportAlert" text="Exported!" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
