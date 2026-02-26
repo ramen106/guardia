@@ -10,7 +10,7 @@
    <children>
       <Button layoutX="14.0" layoutY="341.0" mnemonicParsing="false" onAction="#generate" prefHeight="35.0" prefWidth="120.0" text="Generate" textAlignment="CENTER" />
       <Button layoutX="466.0" layoutY="341.0" mnemonicParsing="false" onAction="#export" prefHeight="35.0" prefWidth="120.0" text="Export to .txt" />
-      <ListView prefHeight="310.0" prefWidth="590.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
+      <ListView fx:id="passwordListView" prefHeight="310.0" prefWidth="590.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
       <Spinner fx:id="passwordCount" editable="true" layoutX="164.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
       <Spinner fx:id="passwordLength" editable="true" layoutX="314.0" layoutY="341.0" prefHeight="35.0" prefWidth="120.0" />
       <Label layoutX="180.0" layoutY="378.0" prefHeight="17.0" prefWidth="150.0" text="# of passwords" />

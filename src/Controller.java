@@ -1,4 +1,6 @@
 import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
@@ -16,20 +18,27 @@ public class Controller implements Initializable {
     @FXML
     private Spinner<Integer> passwordLength;
     
-    @FXML
-    private ListView<String> passwords;
     
+    @FXML
+    private ListView<String> passwordListView;
+
+    // This is what actually holds the item, list view listens to it and draws changes/passwords that are added
+    private ObservableList<String> passwords = FXCollections.observableArrayList();
+
     int passwordsToGenerate;
     int passwordSize;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1)
     {
+        // Binding listview to the observable list
+        passwordListView.setItems(passwords);
+        
         // Handle the spinners for the password length and count, 
         // setting their minimum and max values as 8-32 and 1-100 respectively
         // default values are 16 for length, 5 for password count
-        SpinnerValueFactory<Integer> passwordLengthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 32);
-        SpinnerValueFactory<Integer> passwordCountFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        SpinnerValueFactory<Integer> passwordLengthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 64);
+        SpinnerValueFactory<Integer> passwordCountFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000);
         passwordLengthFactory.setValue(16);
         passwordCountFactory.setValue(5);
 
@@ -44,15 +53,14 @@ public class Controller implements Initializable {
    @FXML
     public void generate(ActionEvent e)
     {
+        passwords.clear();
         passwordsToGenerate = passwordCount.getValue();
         passwordSize = passwordLength.getValue();
 
         for(int i = 0; i < passwordsToGenerate; i++)
         {
-            // Generate passwords
+            passwords.add(Generator.generatePassword(passwordSize));
         }
-
-        System.out.println("Generated");
     }
 
     @FXML
