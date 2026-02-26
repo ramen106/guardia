@@ -13,7 +13,7 @@ public class Main extends Application {
         try
         {
             // loading the gui and setting up the stages, icon and app title
-        Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
         Scene scene = new Scene(root, Color.GRAY);
         String iconPath = getClass().getResource("/icon.png").toExternalForm();
         primaryStage.getIcons().add(new Image(iconPath));
