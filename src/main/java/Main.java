@@ -15,8 +15,8 @@ public class Main extends Application {
             // loading the gui and setting up the stages, icon and app title
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         Scene scene = new Scene(root, Color.GRAY);
-        Image icon =  new Image("icon.png");
-        primaryStage.getIcons().add(icon);
+        String iconPath = getClass().getResource("/icon.png").toExternalForm();
+        primaryStage.getIcons().add(new Image(iconPath));
         primaryStage.setTitle("Guardia");
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(400);
