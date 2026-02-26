@@ -5,7 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -34,6 +36,17 @@ public class Controller implements Initializable {
         // Binding listview to the observable list
         passwordListView.setItems(passwords);
         
+        // If double left click a password, put it in clipboard stream and push it to system clipboard (copy it)
+        passwordListView.setOnMouseClicked(event -> {
+            if(event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2)
+            {
+                Clipboard clipboard = Clipboard.getSystemClipboard();
+                ClipboardContent content = new ClipboardContent();
+                content.putString(passwordListView.getSelectionModel().getSelectedItem());
+                clipboard.setContent(content);
+                // TODO: display "Copied!"
+            }
+            });
         // Handle the spinners for the password length and count, 
         // setting their minimum and max values as 8-32 and 1-100 respectively
         // default values are 16 for length, 5 for password count
