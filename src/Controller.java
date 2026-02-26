@@ -17,6 +17,12 @@ import javafx.animation.PauseTransition;
 
 public class Controller implements Initializable {
 
+    int MIN_PASSWORD_LENGTH = 8;
+    int MAX_PASSWORD_LENGTH = 64;
+
+    int MIN_PASSWORD_COUNT = 1;
+    int MAX_PASSWORD_COUNT = 10000;
+
     @FXML
     private Spinner<Integer> passwordCount;
  
@@ -56,6 +62,7 @@ public class Controller implements Initializable {
                 String selectedPassword = passwordListView.getSelectionModel().getSelectedItem();
                 if(selectedPassword != null)
                 {
+                    // Get the password minus the trailing number, period and spaces by trimming after period
                     String actualPassword = selectedPassword.substring(selectedPassword.indexOf(".") + 1).trim();
                     Clipboard clipboard = Clipboard.getSystemClipboard();
                     ClipboardContent content = new ClipboardContent();
@@ -63,6 +70,7 @@ public class Controller implements Initializable {
                     clipboard.setContent(content);
                     copyAlert.setText("Password copied!");
                     copyAlert.setVisible(true);
+
                     // Set a timer for 2 seconds
                     if(copyTimer != null)
                     {
@@ -71,16 +79,18 @@ public class Controller implements Initializable {
 
                     copyTimer = new PauseTransition(Duration.seconds(1));
                     copyTimer.setOnFinished(event2 -> copyAlert.setVisible(false));
+
+                    // Start the timer, the text will disappear after 2 seconds
                     copyTimer.play();
                 }
             }
             });
             
         // Handle the spinners for the password length and count, 
-        // setting their minimum and max values as 8-32 and 1-100 respectively
+        // setting their minimum and max values as 8-64 and 1-10000 respectively
         // default values are 16 for length, 5 for password count
-        SpinnerValueFactory<Integer> passwordLengthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 64);
-        SpinnerValueFactory<Integer> passwordCountFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000);
+        SpinnerValueFactory<Integer> passwordLengthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH);
+        SpinnerValueFactory<Integer> passwordCountFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_PASSWORD_COUNT, MAX_PASSWORD_COUNT);
         passwordLengthFactory.setValue(16);
         passwordCountFactory.setValue(5);
 
@@ -112,13 +122,12 @@ public class Controller implements Initializable {
         {
             exportTimer.stop();
         }
-
+        
+        Exporter.exportPasswords(passwords);
+        
         exportAlert.setVisible(true);
-
         exportTimer = new PauseTransition(Duration.seconds(1));
-
         exportTimer.setOnFinished(event -> exportAlert.setVisible(false));
-
         exportTimer.play();
     } 
 }
