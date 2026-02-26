@@ -35,7 +35,7 @@ The project is built using a modular approach to separate UI management from cor
 1. **Prerequisites**: Ensure you have **Java 17+** and the **JavaFX SDK** installed.
 2. **Clone the Repo**:
     ```bash
-    git clone [https://github.com/ramen106/guardia.git](https://github.com/ramen106/guardia.git)
+    git clone https://github.com/ramen106/guardia.git
     ```
 3. **Compile & Run**: Launch the app through your preferred IDE or via Maven/Gradle using the `Main.java` entry point.
 
