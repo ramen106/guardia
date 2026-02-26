@@ -2,40 +2,55 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import javax.swing.JFileChooser;
-import javafx.collections.ObservableList;
+import java.util.List;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 
-public class Exporter {
-
-    public static void exportPasswords(ObservableList<String> passwords)
+public class Exporter
+{
+    public static boolean exportPasswords(List<String> passwords)
     {
         // Make filechooser instance and find the path, set default file name to passwords.txt
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("."));
-        fileChooser.setSelectedFile(new File("passwords.txt"));
-        int response = fileChooser.showSaveDialog(null);
-        String path = fileChooser.getSelectedFile().getAbsolutePath();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("."));
+        fileChooser.setInitialFileName("passwords.txt");
+        
+            // Set the "save as type" to .txt
+        ExtensionFilter extension = new ExtensionFilter("Text Files", "*.txt");
+        fileChooser.getExtensionFilters().add(extension);
+        
+            // Prompt the user for a location/file and fetch the path
+        File selectedFile = fileChooser.showSaveDialog(null);
 
-        // If user successfully chose path, check if their chosen file is a txt file, if not append .txt
-        // Then write every item of the observablelist of passwords into the file
-        if(response == JFileChooser.APPROVE_OPTION)
+        if(selectedFile == null)
         {
-            if(!path.endsWith(".txt"))
+            return false;
+        }
+
+        String path = selectedFile.getAbsolutePath();
+
+        if(!path.endsWith(".txt"))
+        {
+            path += ".txt";
+        }
+
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(path)))
+        {
+            for(String password : passwords)
             {
-                path += ".txt";
+                writer.write(password);
+                writer.newLine();
             }
 
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(path)))
-            {
-                writer.write("hi guys");
-            }
+            return true;
+        }
 
-            catch (IOException e)
-            {
-                System.out.println("Failure to write file");
-                e.printStackTrace();
-            }
+        catch (IOException e)
+        {
+            System.out.println("Failure to write file");
+            e.printStackTrace();
+            return false;
         }
     }
 }

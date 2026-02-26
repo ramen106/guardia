@@ -118,16 +118,19 @@ public class Controller implements Initializable {
     @FXML
     public void export(ActionEvent e)
     {
-        if(exportTimer != null)
+        
+        if(Exporter.exportPasswords(passwords))
         {
-            exportTimer.stop();
+            if(exportTimer != null)
+            {
+                exportTimer.stop();
+            }
+            
+            exportAlert.setVisible(true);
+            exportTimer = new PauseTransition(Duration.seconds(1));
+            exportTimer.setOnFinished(event -> exportAlert.setVisible(false));
+            exportTimer.play();
         }
         
-        Exporter.exportPasswords(passwords);
-        
-        exportAlert.setVisible(true);
-        exportTimer = new PauseTransition(Duration.seconds(1));
-        exportTimer.setOnFinished(event -> exportAlert.setVisible(false));
-        exportTimer.play();
     } 
 }
