@@ -9,7 +9,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Exporter
 {
-    public static boolean exportPasswords(List<String> passwords)
+    public static boolean exportPasswords(List<String> passwords, boolean printWithNumbering)
     {
         // Make filechooser instance and find the path, set default file name to passwords.txt
         FileChooser fileChooser = new FileChooser();
@@ -39,7 +39,18 @@ public class Exporter
         {
             for(String password : passwords)
             {
-                writer.write(password);
+                String actualPassword = password.substring(password.indexOf(".") + 1).trim();
+
+                if(printWithNumbering == true)
+                {
+                    writer.write(password);
+                }
+
+                else
+                {
+                    writer.write(actualPassword);
+                }
+                
                 writer.newLine();
             }
 

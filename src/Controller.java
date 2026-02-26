@@ -2,6 +2,7 @@ import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
@@ -38,6 +39,8 @@ public class Controller implements Initializable {
     @FXML
     private Label exportAlert;
 
+    @FXML
+    private CheckBox numberingCheck;
     // This is what actually holds the item, list view listens to it and draws changes/passwords that are added
     private ObservableList<String> passwords = FXCollections.observableArrayList();
 
@@ -51,7 +54,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1)
-    {
+    {        
         // Binding listview to the observable list
         passwordListView.setItems(passwords);
         
@@ -118,14 +121,16 @@ public class Controller implements Initializable {
     @FXML
     public void export(ActionEvent e)
     {
-        
-        if(Exporter.exportPasswords(passwords))
+        boolean printWithNumbering = numberingCheck.isSelected();
+
+        if(Exporter.exportPasswords(passwords, printWithNumbering))
         {
             if(exportTimer != null)
             {
                 exportTimer.stop();
             }
             
+            exportAlert.setManaged(true);
             exportAlert.setVisible(true);
             exportTimer = new PauseTransition(Duration.seconds(1));
             exportTimer.setOnFinished(event -> exportAlert.setVisible(false));
