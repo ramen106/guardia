@@ -37,7 +37,7 @@ The project is built using a modular approach to separate UI management from cor
     ```bash
     git clone https://github.com/ramen106/guardia.git
     ```
-3. **Compile & Run**: Launch the app through your preferred IDE or via Maven/Gradle using the `Main.java` entry point.
+3. **Compile & Run**: Launch the app through your preferred IDE or via Maven/Gradle using the `AppLauncher.java` entry point.
 
 ---
 
