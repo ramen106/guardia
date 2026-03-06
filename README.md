@@ -33,8 +33,10 @@ The project is built using a modular approach to separate UI management from cor
 ## How to Use
 
 1. **Prerequisites**: JDK 25 (21 might work, I haven't tested)
-2. **Running the App**: Download the Guardia.jar file and simply run it
-
+2. **Running the App**: Simply double click and run the jar if possible, otherwise: open a terminal and run:
+```
+java -jar Guardia.jar
+```
 ---
 
 ## Security Logic
